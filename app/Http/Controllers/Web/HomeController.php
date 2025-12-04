@@ -21,6 +21,6 @@ class HomeController extends Controller
             ->take(3)
             ->get();
 
-        return view('web.home');
+        return view('web.home-page', compact('eventos', 'exhibiciones'));
     }
 }

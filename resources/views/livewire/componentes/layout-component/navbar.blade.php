@@ -1,4 +1,3 @@
-<!-- Navbar -->
 <nav class="border-b border-[#c9a961] flex justify-between items-center px-10 py-6 bg-black/80 fixed w-full top-0 z-50">
     <div class="flex items-center gap-3">
         <div class="w-6 h-6 border-2 rounded-b-full border-white rounded flex items-center justify-center">
@@ -23,8 +22,8 @@
         </li>
 
         <li>
-            <a href="{{ route('salas virtuales') }}"
-                class="{{ request()->routeIs('salas virtuales') ? 'text-[#c9a961]' : 'text-gray-400 hover:text-white' }}">
+            <a href="{{ route('salas-virtuales') }}"
+                class="{{ request()->routeIs('salas-virtuales') ? 'text-[#c9a961]' : 'text-gray-400 hover:text-white' }}">
                 Salas Virtuales
             </a>
         </li>
@@ -44,7 +43,7 @@
         </li>
 
         <li>
-            <a href="{{ route('sobre nosotros') }}"
+            <a href="{{ route('sobre-nosotros') }}"
                 class="{{ request()->routeIs('sobre-nosotros') ? 'text-[#c9a961]' : 'text-gray-400 hover:text-white' }}">
                 Sobre Nosotros
             </a>
@@ -59,7 +58,6 @@
     </ul>
 
     <div class="flex gap-3">
-
         <!-- Comprar entrada siempre visible -->
         <button 
             wire:click="$dispatch('abrir-entrada-presencial')"
@@ -101,12 +99,6 @@
                     Cerrar sesión
                 </button>
             </form>
-
         @endauth
-
     </div>
-
-    <!-- Modales -->
-    <livewire:componentes.auth-component.auth-modal />
-    <livewire:componentes.entrada-component.entrada-form />
 </nav>

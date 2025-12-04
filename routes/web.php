@@ -21,7 +21,7 @@ Route::get('/contacto', [ContactoController::class, 'index'])->name('contacto');
 Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil');
 
 // Static Pages
-Route::view('/sobre-nosotros', 'web.nosotros-page')->name('sobre nosotros');
+Route::view('/sobre-nosotros', 'web.nosotros-page')->name('sobre-nosotros');
 
 // Admin Routes
 Route::get('/panel', [PanelController::class, 'index'])->name('panel');

@@ -19,7 +19,7 @@ class SalaVirtualController extends Controller
             ->orderBy('titulo', 'asc')
             ->get();
 
-        return view('web.salavirtual-pages.salas-virtuales-page', compact('salas', 'categorias', 'categoria'));
+        return view('web.salavirtual-pages.salas-page', compact('salas', 'categorias', 'categoria'));
     }
 
     public function show($slug)
@@ -27,6 +27,6 @@ class SalaVirtualController extends Controller
         $sala = SalaVirtual::where('slug', $slug)->firstOrFail();
 
         $exhibiciones = $sala->exhibiciones()->orderBy('titulo', 'asc')->get();
-        return view('web.salavirtual-pages.sala-virtual-page', compact('sala', 'exhibiciones'));
+        return view('web.salavirtual-pages.sala-page', compact('sala', 'exhibiciones'));
     }
 }

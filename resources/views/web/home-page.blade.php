@@ -92,7 +92,7 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto px-4">
-            <-- Tarjeta Simple -->
+            <!-- TARJETA SIMPLE -->
             @foreach ($exhibiciones as $exhibicion)
                 @livewire('componentes.exhibicion-component.exhibicion-component', [
                     'exhibicion' => $exhibicion,
@@ -129,7 +129,6 @@
 
         <!-- Tarjetas tipo simple -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto px-4">
-            <-- Tarjeta Simple -->
             @foreach ($eventos as $evento)
                 @livewire('componentes.evento-component.evento-component', [
                     'evento' => $evento,
@@ -169,13 +168,8 @@
 
             <div class="flex justify-center gap-4">
                 <button 
-                    @guest 
-                        onclick="openAuthModal()" 
-                    @endguest
-                    @auth 
-                        onclick="abrirModalReservaMesa()"
-                        @include('reservas.modals.reservar-mesa')  {{-- reservación --}}
-                    @endauth
+                    @guest onclick="openAuthModal()" @endguest
+                    @auth onclick="abrirModalReservaMesa()" @endauth
                     class="bg-[#c9a961] font-serif hover:bg-yellow-500 text-black font-medium px-6 py-3 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
                 >
                     Reservar Mesa

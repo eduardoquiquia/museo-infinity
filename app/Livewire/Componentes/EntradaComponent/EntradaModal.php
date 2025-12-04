@@ -27,6 +27,11 @@ class EntradaModal extends Component
         'abrir-entrada-evento'     => 'modoEvento',
     ];
 
+    public function cerrar()
+    {
+        $this->open = false;
+    }
+
     public function modoPresencial()
     {
         if (!Auth::check()) {
@@ -114,6 +119,6 @@ class EntradaModal extends Component
 
     public function render()
     {
-        return view('livewire.componentes.entrada-component.entrada-form');
+        return view('livewire.componentes.entrada-component.entrada-modal');
     }
 }
