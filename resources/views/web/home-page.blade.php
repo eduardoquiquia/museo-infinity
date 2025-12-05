@@ -142,7 +142,7 @@
             <!-- Tarjetas tipo simple -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto px-4">
                 @foreach ($eventos as $evento)
-                    @livewire('componentes.evento-component.evento-component', [
+                    @livewire('componentes.evento-component.simple', [
                         'evento' => $evento,
                         'tipo' => 'simple'
                     ])
