@@ -11,7 +11,7 @@ class CreateForm extends Component
     public $nombre, $descripcion, $fecha, $hora, $ubicacion, $categoria, $precio, $capacidad, $imagen_principal;
     public $estado = 'activo';
 
-    protected $listeners = ['abrir-modal-crear' => 'openModal'];
+    protected $listeners = ['abrir-modal-crear-evento' => 'openModal'];
 
     protected $rules = [
         'nombre' => 'required|string|max:255',

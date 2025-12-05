@@ -17,7 +17,6 @@ class SalaVirtual extends Model
         'subtitulo',
         'categoria',
         'nivel_experiencia',
-        'duracion',
         'salas_incluidas',
         'imagen_principal',
         'imagen_360',

@@ -28,8 +28,23 @@
     {{-- FOOTER --}}
     @livewire('componentes.layout-component.footer')
     
+    {{-- MODALES EN NAVBAR --}}
     @livewire('componentes.entrada-component.entrada-modal')
     @livewire('componentes.auth-component.auth-modal')
+
+    {{-- MODAL CREATE --}}
+    @livewire('crud.user-crud.create-form')
+    @livewire('crud.evento-crud.create-form')
+    @livewire('crud.exhibicion-crud.create-form')
+    @livewire('crud.plato-crud.create-form')
+    @livewire('crud.salavirtual-crud.create-form')
+
+    {{-- MODAL EDIT --}}
+    @livewire('crud.user-crud.edit-form')
+    @livewire('crud.evento-crud.edit-form')
+    @livewire('crud.exhibicion-crud.edit-form')
+    @livewire('crud.plato-crud.edit-form')
+    @livewire('crud.salavirtual-crud.edit-form')
 
     {{-- Livewire Scripts --}}
     @livewireScripts

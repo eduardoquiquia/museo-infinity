@@ -10,7 +10,7 @@ class CreateForm extends Component
     public $open = false;
     public $titulo, $descripcion, $categoria, $imagen_principal, $imagen_360, $periodo, $fecha_descubrimiento, $lugar_hallazgo, $descripcion_detallada, $destacada;
     public $estado = 'Borrador';
-    protected $listeners = ['abrir-modal-crear' => 'openModal'];
+    protected $listeners = ['abrir-modal-crear-exhibicion' => 'openModal'];
 
     protected $rules = [
         'titulo' => 'required|string|max:255',

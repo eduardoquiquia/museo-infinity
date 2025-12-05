@@ -33,9 +33,6 @@
 
     {{-- TABLA / LISTA DE EVENTOS --}}
     <div class="mt-4">
-        <livewire:crud.evento-crud.index :search="$search" />
+        @livewire('crud.evento-crud.index', ['search' => $search])
     </div>
-
-    {{-- MODAL CREATE --}}
-    <livewire:crud.evento-crud.create-form />
 </div>

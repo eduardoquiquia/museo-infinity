@@ -33,9 +33,6 @@
 
     {{-- TABLA / LISTA DE EXHIBICION --}}
     <div class="mt-4">
-        <livewire:crud.exhibicion-crud.index :search="$search" />
+        @livewire('crud.exhibicion-crud.index', ['search' => $search])
     </div>
-
-    {{-- MODAL CREATE --}}
-    <livewire:crud.exhibicion-crud.create-form />
 </div>

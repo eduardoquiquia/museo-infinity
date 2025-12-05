@@ -15,7 +15,7 @@ class CreateForm extends Component
     public $role = 'usuario';
     public $estado = 'activo';
 
-    protected $listeners = ['abrir-modal-crear' => 'openModal'];
+    protected $listeners = ['abrir-modal-crear-usuario' => 'openModal'];
 
     protected $rules = [
         'name' => 'required|string|max:255',

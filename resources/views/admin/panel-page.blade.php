@@ -8,7 +8,5 @@
             </p>
         </div>
     </section>
-
-    {{-- PANEL ADMIN VIA LIVEWIRE --}}
-    <livewire:componentes.admin-component.admin.panel />
+    @livewire('componentes.admin-component.admin-panel')
 </x-app-layout>

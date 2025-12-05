@@ -16,7 +16,7 @@ class Index extends Component
     // Emitir evento para abrir modal desde otro componente
     public function editar($id)
     {
-        $this->dispatch('abrirModalEditar', id: $id);
+        $this->dispatch('abrir-modal-editar-exhibicion', id: $id);
     }
 
     public function deleteEvento($id)

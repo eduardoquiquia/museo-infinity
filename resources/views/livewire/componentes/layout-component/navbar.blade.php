@@ -78,8 +78,8 @@
 
         @auth
 
-            @if(auth()->user()->rol === 'admin')
-                <a href="{{ route('admin.panel') }}" 
+            @if(auth()->user()->role === 'admin')
+                <a href="{{ route('panel') }}" 
                     class="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition">
                     Panel
                 </a>

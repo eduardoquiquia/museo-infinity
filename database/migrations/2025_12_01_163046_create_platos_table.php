@@ -11,11 +11,11 @@ return new class extends Migration
         Schema::create('platos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->text('descripcion')->nullable();
+            $table->text('descripcion');
             $table->enum('categoria', ['Entradas', 'Platos principales', 'Acompañamientos', 'Postres', 'Bebidas'])->index();
             $table->decimal('precio', 8, 2);
-            $table->string('imagen_principal')->nullable();
-            $table->enum('estado', ['Disponible', 'Agotado', 'Inactivo'])->default('disponible')->index();
+            $table->string('imagen_principal');
+            $table->enum('estado', ['Disponible', 'Agotado', 'Inactivo'])->default('Disponible')->index();
         });
     }
 

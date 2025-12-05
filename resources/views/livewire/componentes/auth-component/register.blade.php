@@ -1,4 +1,3 @@
-<!-- Formulario Livewire -->
 <form wire:submit.prevent="register" class="space-y-4">
 
     <!-- Nombre -->

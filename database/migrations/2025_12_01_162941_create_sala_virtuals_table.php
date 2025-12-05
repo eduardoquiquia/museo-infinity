@@ -11,15 +11,14 @@ return new class extends Migration
         Schema::create('sala_virtuals', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
-            $table->string('subtitulo')->nullable();
+            $table->string('subtitulo');
             $table->enum('categoria', ['Dinosaurios', 'Mamiferos Extintos', 'Arte Rupestre', 'Herramientas Antiguas']);
             $table->enum('nivel_experiencia', ['Básico', 'Intermedio', 'Avanzado']);
-            $table->string('duracion')->nullable();       
-            $table->string('salas_incluidas')->nullable();
-            $table->string('imagen_principal')->nullable();
+            $table->string('salas_incluidas');
+            $table->string('imagen_principal');
             $table->string('imagen_360')->nullable();
-            $table->text('descripcion')->nullable();
-            $table->json('highlights')->nullable();
+            $table->text('descripcion');
+            $table->json('highlights');
             $table->enum('estado', ['activo', 'inactivo'])->default('activo');
         });
     }

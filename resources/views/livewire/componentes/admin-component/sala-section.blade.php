@@ -34,9 +34,6 @@
 
     {{-- TABLA / LISTA DE SALAS VIRTUALES --}}
     <div class="mt-4">
-        <livewire:crud.salavirtual-crud.index :search="$search" />
+        @livewire('crud.salavirtual-crud.index', ['search' => $search])
     </div>
-
-    {{-- MODAL CREATE --}}
-    <livewire:crud.salavirtual-crud.create-form />
 </div>

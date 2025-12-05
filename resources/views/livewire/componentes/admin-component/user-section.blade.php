@@ -33,9 +33,6 @@
 
     {{-- TABLA / LISTA DE USUARIOS --}}
     <div class="mt-4">
-        <livewire:crud.user-crud.index :search="$search" />
+        @livewire('crud.user-crud.index', ['search' => $search])
     </div>
-
-    {{-- MODAL CREATE --}}
-    <livewire:crud.user-crud.create-form />
 </div>

@@ -11,7 +11,7 @@ class UserSection extends Component
     public function openCreateModal()
     {
         // Dispara el evento al modal
-        $this->dispatch('abrir-modal-crear');
+        $this->dispatch('abrir-modal-crear-usuario');
     }
 
     public function render()

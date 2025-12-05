@@ -33,9 +33,6 @@
 
     {{-- TABLA / LISTA DE PLATOS --}}
     <div class="mt-4">
-        <livewire:crud.plato-crud.index :search="$search" />
+        @livewire('crud.plato-crud.index', ['search' => $search])
     </div>
-
-    {{-- MODAL CREATE --}}
-    <livewire:crud.plato-crud.create-form />
 </div>

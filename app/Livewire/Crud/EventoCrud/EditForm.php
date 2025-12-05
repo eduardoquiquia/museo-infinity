@@ -11,7 +11,7 @@ class EditForm extends Component
     public $eventoId;
     public $nombre, $descripcion, $fecha, $hora, $ubicacion, $categoria, $precio, $capacidad, $imagen_principal, $estado;
 
-    protected $listeners = ['abrirModalEditar' => 'cargarEvento'];
+    protected $listeners = ['abrir-modal-editar-evento' => 'cargarEvento'];
 
     protected $rules = [
         'nombre' => 'required|string|max:255',

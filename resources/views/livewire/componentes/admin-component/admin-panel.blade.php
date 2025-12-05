@@ -40,30 +40,28 @@
     <!-- CONTENIDO DEL PANEL -->
     <div class="min-h-[400px]">
         @switch($modulo)
-
             @case('usuarios')
-                <livewire:componentes.admin-component.user-section />
+                @livewire('componentes.admin-component.user-section')
                 @break
 
             @case('exhibiciones')
-                <livewire:componentes.admin-component.exhibicion-section />
+                @livewire('componentes.admin-component.exhibicion-section')
                 @break
 
             @case('salas')
-                <livewire:componentes.admin-component.sala-section />
+                @livewire('componentes.admin-component.sala-section')
                 @break
 
             @case('eventos')
-                <livewire:componentes.admin-component.evento-section />
+                @livewire('componentes.admin-component.evento-section')
                 @break
 
             @case('platos')
-                <livewire:componentes.admin-component.plato-section />
+                @livewire('componentes.admin-component.plato-section')
                 @break
 
             @default
-                <livewire:componentes.admin-component.dashboard-section />
+                @livewire('componentes.admin-component.dashboard-section')
         @endswitch
     </div>
-
 </section>

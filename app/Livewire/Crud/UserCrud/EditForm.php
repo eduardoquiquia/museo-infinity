@@ -11,7 +11,7 @@ class EditForm extends Component
     public $userId;
     public $name, $email, $role, $estado;
 
-    protected $listeners = ['abrirModalEditar' => 'cargarUsuario'];
+    protected $listeners = ['abrir-modal-editar-usuario' => 'cargarUsuario'];
 
     protected $rules = [
         'name' => 'required|string|max:255',

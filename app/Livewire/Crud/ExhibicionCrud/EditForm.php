@@ -11,7 +11,7 @@ class EditForm extends Component
     public $exhibicionId;
     public $titulo, $descripcion, $categoria, $imagen_principal, $imagen_360, $periodo, $fecha_descubrimiento, $lugar_hallazgo, $descripcion_detallada, $destacada, $estado;
 
-    protected $listeners = ['abrirModalEditar' => 'cargarExhibicion'];
+    protected $listeners = ['abrir-modal-editar-exhibicion' => 'cargarExhibicion'];
 
     protected $rules = [
         'titulo' => 'required|string|max:255',
