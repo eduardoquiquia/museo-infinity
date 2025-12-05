@@ -61,8 +61,8 @@
         <!-- Comprar entrada siempre visible -->
         <button 
             wire:click="$dispatch('abrir-entrada-presencial')"
-            class="bg-yellow-600 hover:bg-yellow-500 text-black font-semibold px-6 py-2 rounded-lg transition"
-        >
+            class="bg-[#c9a961] hover:bg-[#c3a961]/90 text-black font-normal text-sm px-4 py-2.5 rounded-none transition"
+        >   
             Comprar Entrada
         </button>
 
@@ -70,7 +70,7 @@
             <!-- Botón Login -->
             <button 
                 wire:click="$dispatch('abrir-auth')"
-                class="px-6 py-1 hover:text-yellow-500 text-sm bg-transparent border border-[#c9a961]/50 rounded-lg p-4 hover:bg-yellow-500/20 transition-colors duration-300"
+                class="px-6 py-1 hover:text-[#c9a961] text-sm bg-transparent border border-[#c9a961]/50 rounded-none p-4 hover:bg-yellow-500/20 transition-colors duration-300"
             >
                 Iniciar Sesión
             </button>
@@ -84,20 +84,36 @@
                     Panel
                 </a>
             @else
-                <a href="{{ route('perfil') }}" 
-                    class="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition">
-                    Perfil
-                </a>
+            <a href="{{ route('perfil') }}" 
+                class="flex items-center gap-2 px-4 py-2 border border-[#c9a961]/50 rounded-none 
+                    hover:bg-[#c9a961]/10 transition">
+                
+                <!-- Ícono de usuario -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" 
+                    stroke-width="1.5" stroke="#9ca3af" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" 
+                        d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                </svg>
+
+                <!-- Texto -->
+                <span class="text-gray-400 font-medium">Tú</span>
+            </a>
+
             @endif
 
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button 
-                    type="submit"
-                    class="px-6 py-2 bg-red-600 hover:bg-red-500 text-white rounded-lg transition"
-                >
-                    Cerrar sesión
-                </button>
+            <button 
+                type="submit"
+                class="p-2 hover:bg-[#c9a961]/10 transition flex items-center justify-center border border-[#c9a961]/50 rounded-none"
+                title="Cerrar sesión"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="#9ca3af" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M15.75 9V5.25c0-.69-.56-1.25-1.25-1.25H6.5c-.69 0-1.25.56-1.25 1.25v13.5c0 .69.56 1.25 1.25 1.25h8c.69 0 1.25-.56 1.25-1.25V15m-6 0l-3-3m0 0l3-3m-3 3h12.75" />
+                </svg>
+            </button>
             </form>
         @endauth
     </div>

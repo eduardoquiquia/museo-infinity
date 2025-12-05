@@ -20,7 +20,8 @@
     @livewire('componentes.layout-component.navbar')
 
     {{-- CONTENIDO PRINCIPAL --}}
-    <main class="flex-grow pt-24">
+    <main class="flex-grow">
+
         {{ $slot }}
     </main>
 
