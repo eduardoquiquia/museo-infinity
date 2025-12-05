@@ -11,7 +11,7 @@
         >
             {{-- Header --}}
             <div class="flex justify-between items-center mb-4">
-                <h2 class="text-xl font-semibold">
+                <h2 class="text-xl font-normal">
                     {{ $tab === 'login' ? 'Accede a tu cuenta' : 'Crea tu cuenta' }}
                 </h2>
                 <button wire:click="close" class="text-white/70 hover:text-white">✕</button>
