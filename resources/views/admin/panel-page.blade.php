@@ -8,5 +8,6 @@
             </p>
         </div>
     </section>
+
     @livewire('componentes.admin-component.admin-panel')
 </x-app-layout>

@@ -80,7 +80,9 @@
 
             @if(auth()->user()->role === 'admin')
                 <a href="{{ route('panel') }}" 
-                    class="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition">
+
+                    class="px-6 py-2 border border-[#c9a961]/50 hover:bg-[#c9a961]/10 text-gray-400 rounded-none transition">
+
                     Panel
                 </a>
             @else

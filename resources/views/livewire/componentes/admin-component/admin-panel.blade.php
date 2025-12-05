@@ -1,3 +1,4 @@
+
 <section class="max-w-7xl mx-auto px-4 py-12">
     <!-- NAV BAR -->
     <div class="mb-10 flex justify-center">
