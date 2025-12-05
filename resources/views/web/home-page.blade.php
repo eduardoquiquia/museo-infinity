@@ -108,7 +108,6 @@
                 @foreach ($exhibiciones as $exhibicion)
                     @livewire('componentes.exhibicion-component.simple', [
                         'exhibicion' => $exhibicion,
-                        'tipo' => 'simple'
                     ])
                 @endforeach
             </div>
@@ -144,7 +143,6 @@
                 @foreach ($eventos as $evento)
                     @livewire('componentes.evento-component.simple', [
                         'evento' => $evento,
-                        'tipo' => 'simple'
                     ])
                 @endforeach
             </div>

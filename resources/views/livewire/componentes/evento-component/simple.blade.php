@@ -2,7 +2,7 @@
     {{-- Imagen --}}
     <div class="w-1/2">
         <img 
-            src="{{ $evento->ruta_imagen }}" 
+            src="{{ $evento->imagen_principal }}" 
             alt="{{ $evento->nombre }}" 
             class="w-full h-full object-cover"
         >

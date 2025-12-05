@@ -24,26 +24,29 @@
             {{ $evento->descripcion }}
         </p>
 
-        {{-- Extra: fecha - hora - ubicación --}}
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-gray-400 text-sm border-t border-yellow-700/20 pt-4">
+        {{-- Fecha - Hora - Ubicación --}}
+        <div class="flex justify-between text-gray-400 text-sm border-t border-yellow-700/20 pt-4">
 
-            {{-- Fecha --}}
-            <span>
-                <span class="text-yellow-500">Fecha:</span>
-                {{ $evento->fecha?->format('d/m/Y') }}
-            </span>
+            @if ($evento->fecha)
+                <span>
+                    <span class="text-yellow-500">Fecha:</span>  
+                    {{ $evento->fecha?->format('d/m/Y') }}
+                </span>
+            @endif
 
-            {{-- Hora --}}
-            <span>
-                <span class="text-yellow-500">Hora:</span>
-                {{ $evento->hora }}
-            </span>
+            @if ($evento->hora)
+                <span>
+                    <span class="text-yellow-500">Hora:</span>  
+                    {{ $evento->hora }}
+                </span>
+            @endif
 
-            {{-- Ubicación --}}
-            <span>
-                <span class="text-yellow-500">Ubicación:</span>
-                {{ $evento->ubicacion }}
-            </span>
+            @if ($evento->ubicacion)
+                <span>
+                    <span class="text-yellow-500">Ubicación:</span>  
+                    {{ $evento->ubicacion }}
+                </span>
+            @endif
         </div>
 
         {{-- Precio + Estado --}}
@@ -67,6 +70,16 @@
                 @endif">
                 {{ ucfirst($evento->estado) }}
             </span>
+        </div>
+
+        {{-- Comprar Entrada siempre visible --}}
+        <div class="mt-4">
+            <button 
+                wire:click="$dispatch('abrir-entrada-presencial')"
+                class="bg-[#c9a961] hover:bg-[#c3a961]/90 text-black font-normal text-sm px-4 py-2.5 rounded-none transition"
+            >   
+                Comprar Entrada
+            </button>
         </div>
 
     </div>

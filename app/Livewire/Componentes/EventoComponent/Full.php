@@ -10,10 +10,6 @@ class Full extends Component
 
     public function mount($evento)
     {
-        if (!$evento->slug) {
-            dd('EVENTO SIN SLUG', $evento);
-        }
-
         $this->evento = $evento;
     }
 

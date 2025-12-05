@@ -25,14 +25,14 @@
             </p>
         </div>
     </section>
-
-    <section class="bg-[#0a0a0a] py-20">
-        <-- Tarjeta Full -->
+    <br>
+    <!-- Grid de tarjetas -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto px-4">
             @foreach ($eventos as $evento)
                 @livewire('componentes.evento-component.full', [
                     'evento' => $evento,
                     'tipo' => 'full'
                 ])
             @endforeach
-    </section>
+        </div>
 </x-app-layout>

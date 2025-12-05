@@ -65,7 +65,6 @@
 
             <!-- Grid de tarjetas -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto px-4">
-                <-- Tarjeta Full -->
                 @foreach ($salas as $sala)
                     @livewire('componentes.salavirtual-component.sala', ['sala' => $sala])
                 @endforeach

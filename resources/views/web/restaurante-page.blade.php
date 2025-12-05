@@ -60,7 +60,7 @@
 
                     @if($categoria)
                         <a 
-                            href="{{ route('web.restaurante') }}" 
+                            href="{{ route('restaurante') }}" 
                             class="text-[#c9a961] underline px-2 py-2"
                         >
                             Limpiar
