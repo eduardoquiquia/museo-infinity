@@ -50,7 +50,7 @@ class CreateForm extends Component
             $this->estado = 'Disponible';
             $this->open = false;
 
-            $this->dispatch('plato-creado');
+            $this->dispatch('platoCreado');
         }
 
     public function render()

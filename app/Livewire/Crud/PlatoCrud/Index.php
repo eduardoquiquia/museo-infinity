@@ -10,7 +10,8 @@ class Index extends Component
     public $search = '';
 
     protected $listeners = [
-        'platoActualizado' => 'refresh'
+        'platoActualizado' => '$refresh',
+        'platoCreado' => '$refresh'
     ];
 
     // Emitir evento para abrir modal desde otro componente
@@ -27,6 +28,11 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.crud.plato-crud.index');
+        return view('livewire.crud.plato-crud.index', [
+            'platos' => Plato::where('nombre', 'like', "%{$this->search}%")
+                ->orWhere('categoria', 'like', "%{$this->search}%")
+                ->orderBy('id', 'desc')
+                ->get(),
+        ]);
     }
 }

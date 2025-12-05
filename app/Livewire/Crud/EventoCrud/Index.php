@@ -10,7 +10,8 @@ class Index extends Component
     public $search = '';
 
     protected $listeners = [
-        'eventoActualizado' => '$refresh'
+        'eventoActualizado' => '$refresh',
+        'eventoCreado' => '$refresh'
     ];
 
     // Emitir evento para abrir modal desde otro componente

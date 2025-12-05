@@ -6,7 +6,7 @@
                 {{-- Imagen --}}
                 <div class="relative h-52 w-full overflow-hidden">
                     <img 
-                        src="{{$evento->imagen_principal) }}" 
+                        src="{{$evento->imagen_principal}}" 
                         alt="Imagen del evento {{ $evento->nombre }}"
                         class="object-cover w-full h-full"
                     >

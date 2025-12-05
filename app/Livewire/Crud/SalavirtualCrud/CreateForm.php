@@ -57,7 +57,7 @@ class CreateForm extends Component
         $this->estado = 'activo';
         $this->open = false;
 
-        $this->dispatch('sala-creado');
+        $this->dispatch('salaCreada');
     }
 
     public function render()

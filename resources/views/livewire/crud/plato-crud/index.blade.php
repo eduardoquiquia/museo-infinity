@@ -5,7 +5,7 @@
             {{-- Imagen --}}
             <div class="relative h-52 w-full overflow-hidden">
                 <img 
-                    src="{{$plato->imagen_principal) }}" 
+                    src="{{$plato->imagen_principal}}" 
                     alt="Imagen del plato {{ $plato->nombre }}"
                     class="object-cover w-full h-full"
                 >

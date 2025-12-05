@@ -58,7 +58,7 @@ class CreateForm extends Component
         $this->estado = 'Borrador';
         $this->open = false;
 
-        $this->dispatch('exhibicion-creado');
+        $this->dispatch('exhibicionCreado');
     }
 
     public function render()

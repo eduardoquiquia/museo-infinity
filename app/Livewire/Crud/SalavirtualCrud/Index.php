@@ -10,7 +10,8 @@ class Index extends Component
     public $search = '';
 
     protected $listeners = [
-        'salaActualizado' => 'refresh'
+        'salaActualizada' => '$refresh',
+        'salaCreada' => '$refresh'
     ];
 
     // Emitir evento para abrir modal desde otro componente
@@ -27,6 +28,11 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.crud.salavirtual-crud.index');
+        return view('livewire.crud.salavirtual-crud.index', [
+            'salas' => SalaVirtual::where('titulo', 'like', "%{$this->search}%")
+                ->orWhere('categoria', 'like', "%{$this->search}%")
+                ->orderBy('id', 'desc')
+                ->get(),
+        ]);
     }
 }

@@ -5,7 +5,7 @@
             {{-- Imagen --}}
             <div class="relative h-52 w-full overflow-hidden">
                 <img 
-                    src="{{$sala->imagen_principal) }}" 
+                    src="{{$sala->imagen_principal}}" 
                     alt="Imagen de la sala {{ $sala->titulo }}"
                     class="object-cover w-full h-full"
                 >
