@@ -129,13 +129,15 @@
 
                 {{-- Highlights --}}
                 <div>
-                    <label class="block text-gray-300 text-sm font-medium mb-1">Highlights (JSON Array)</label>
+                    <label class="block text-gray-300 text-sm font-medium mb-1">
+                        Highlights (una por línea)
+                    </label>
                     <textarea 
                         wire:model.defer="highlights"
-                        rows="2"
+                        rows="3"
                         class="w-full bg-[#141212] border border-[#2a2626] rounded-md p-2 text-gray-300 text-sm
-                        focus:outline-none focus:border-[#d4a656]"
-                        placeholder='["Highlight 1", "Highlight 2"]'
+                            focus:outline-none focus:border-[#d4a656]"
+                        placeholder="Highlight 1&#10;Highlight 2&#10;Highlight 3"
                     ></textarea>
                     @error('highlights') <span class="text-red-400 text-xs">{{ $message }}</span> @enderror
                 </div>
@@ -170,7 +172,6 @@
                         Crear Sala
                     </button>
                 </div>
-
             </form>
         </div>
     </div>

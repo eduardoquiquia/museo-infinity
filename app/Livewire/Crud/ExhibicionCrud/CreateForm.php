@@ -4,6 +4,7 @@ namespace App\Livewire\Crud\ExhibicionCrud;
 
 use App\Models\Exhibicion;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class CreateForm extends Component
 {
@@ -42,6 +43,7 @@ class CreateForm extends Component
 
         Exhibicion::create([
             'titulo' => $this->titulo,
+            'slug' => Str::slug($this->titulo) . '-' . uniqid(),
             'descripcion' => $this->descripcion,
             'categoria' => $this->categoria,
             'imagen_principal' => $this->imagen_principal,

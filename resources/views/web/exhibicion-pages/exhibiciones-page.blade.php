@@ -72,9 +72,8 @@
 
         <!-- Grid de tarjetas -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto px-4">
-            <-- Tarjeta Full -->
             @foreach ($exhibiciones as $exhibicion)
-                @livewire('componentes.exhibicion-component.exhibicion-component', [
+                @livewire('componentes.exhibicion-component.full', [
                     'exhibicion' => $exhibicion,
                     'tipo' => 'full'
                 ])

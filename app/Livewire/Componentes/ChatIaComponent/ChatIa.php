@@ -3,8 +3,6 @@
 namespace App\Livewire\Componentes\ChatIaComponent;
 
 use Livewire\Component;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-use Symfony\Component\Process\Process;
 
 class ChatIa extends Component
 {
@@ -45,18 +43,43 @@ class ChatIa extends Component
         }
     }
 
+    public function abrirChat()
+    {
+        $this->isOpen = true;
+        $this->isMinimized = false;
+    }
+
     public function enviarPregunta($pregunta = null)
     {
+        // Si viene pregunta como parámetro, usarla, sino usar la del input
         $preguntaUsuario = $pregunta ?? $this->pregunta;
+        
+        // Limpiar espacios en blanco
+        $preguntaUsuario = trim($preguntaUsuario);
+        
         if (!$preguntaUsuario) return;
 
+        // Agregar mensaje del usuario
         $this->mensajes[] = ['tipo' => 'usuario', 'texto' => $preguntaUsuario];
-        $this->pregunta = '';
+        
+        // Limpiar el input y forzar reset
+        $this->reset('pregunta');
+        
+        // Forzar actualización del componente
+        $this->dispatch('messages-updated');
 
+        // Obtener contexto y consultar IA
         $contexto = $this->getContextoEntidad();
-        $respuestaIA = $this->consultarOllama($preguntaUsuario, $contexto);
+        $respuestaIA = $this->consultarGemini($preguntaUsuario, $contexto);
 
+        // Agregar respuesta de la IA
         $this->mensajes[] = ['tipo' => 'ia', 'texto' => $respuestaIA];
+        
+        // Guardar historial
+        $this->saveHistory();
+        
+        // Actualizar scroll
+        $this->dispatch('messages-updated');
     }
 
     protected function getContextoEntidad()
@@ -105,26 +128,37 @@ class ChatIa extends Component
         return '';
     }
 
-    protected function consultarOllama($pregunta, $contexto)
+    protected function consultarGemini($pregunta, $contexto)
     {
-        // Validar y sanitizar inputs
-        $pregunta = trim($pregunta);
-        $contexto = strip_tags($contexto);
-        
-        // Usar proceso seguro
-        $prompt = "Contexto:\n{$contexto}\n\nPregunta:\n{$pregunta}";
-        $process = new Process(['ollama', 'run', 'llama2', $prompt]);
-        
-        $process->setTimeout(30);
-        
+        $client = new \GuzzleHttp\Client([
+            'base_uri' => 'https://generativelanguage.googleapis.com/v1beta/',
+            'timeout' => 20,
+        ]);
+
+        $apiKey = env('GEMINI_API_KEY');
+
         try {
-            $process->run();
-            return trim($process->getOutput()) ?: 'Lo siento, no tengo información sobre eso.';
-        } catch (ProcessFailedException $e) {
-            return 'Error al procesar tu solicitud.';
+            $response = $client->post("models/gemini-2.5-flash:generateContent?key={$apiKey}", [
+                'json' => [
+                    'contents' => [
+                        [
+                            'parts' => [
+                                ['text' => "Contexto:\n$contexto\n\nPregunta:\n$pregunta"]
+                            ]
+                        ]
+                    ]
+                ]
+            ]);
+
+            $json = json_decode($response->getBody(), true);
+
+            return $json['candidates'][0]['content']['parts'][0]['text']
+                ?? 'No pude generar una respuesta.';
+        } catch (\Exception $e) {
+            return "Error al conectar con Gemini: " . $e->getMessage();
         }
     }
-    
+
     public function clearChat()
     {
         $this->mensajes = [];

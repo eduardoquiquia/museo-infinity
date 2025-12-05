@@ -1,7 +1,6 @@
-@props(['exhibicion'])
-
-<a href="{{ route('web.exhibiciones.show', $exhibicion->slug) }}"
+<a href="{{ route('exhibiciones.show', ['slug' => $exhibicion->slug]) }}"
     class="block bg-[#0d0d0d] border border-yellow-700/40 rounded-xl overflow-hidden shadow-xl hover:scale-[1.02] transition transform duration-300">
+
     {{-- Imagen principal --}}
     <img 
         src="{{ $exhibicion->imagen_principal }}"

@@ -1,5 +1,4 @@
 <section class="max-w-7xl mx-auto px-4 py-12">
-
     <!-- NAV BAR -->
     <div class="mb-10 flex justify-center">
         <div class="flex gap-3 bg-[#0d0d0d] border border-[#c9a961]/30 px-4 py-2 rounded-xl shadow-md">

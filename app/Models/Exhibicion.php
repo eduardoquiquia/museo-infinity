@@ -16,6 +16,7 @@ class Exhibicion extends Model
     /** @var list<string> */
     protected $fillable = [
         'titulo',
+        'slug',
         'descripcion',
         'categoria',
         'imagen_principal',

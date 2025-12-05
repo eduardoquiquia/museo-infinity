@@ -22,7 +22,7 @@ class CreateForm extends Component
         'imagen_principal'  => 'required|string|max:255',
         'imagen_360'        => 'nullable|string|max:255',
         'descripcion'       => 'required|string',
-        'highlights'        => 'required|array',
+        'highlights'        => 'required|array|min:1',
         'estado'            => 'required|in:activo,inactivo',
     ];
 
@@ -38,6 +38,9 @@ class CreateForm extends Component
 
     public function crearSala()
     {
+        $highlightsArray = array_filter(array_map('trim', explode("\n", $this->highlights)));
+        
+        $this->highlights = $highlightsArray;
         $this->validate();
 
         SalaVirtual::create([
@@ -49,7 +52,7 @@ class CreateForm extends Component
             'imagen_principal' => $this->imagen_principal,
             'imagen_360' => $this->imagen_360,
             'descripcion' => $this->descripcion,
-            'highlights' => json_encode($this->highlights),
+            'highlights' => json_encode($highlightsArray),
             'estado' => $this->estado,
         ]);
 

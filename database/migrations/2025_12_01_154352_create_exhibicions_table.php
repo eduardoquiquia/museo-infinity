@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('exhibicions', function (Blueprint $table) {
             $table->id();
             $table->string('titulo')->index();
+            $table->string('slug')->unique();
             $table->text('descripcion');
             $table->enum('categoria', ['Dinosaurios', 'Mamiferos Extintos', 'Arte Rupestre', 'Herramientas Antiguas']);
             $table->string('imagen_principal');
