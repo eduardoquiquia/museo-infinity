@@ -1,4 +1,3 @@
-
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     @forelse ($exhibiciones as $exhibicion)
         <div class="bg-neutral-900 rounded-xl shadow-md overflow-hidden border border-neutral-800">
@@ -96,8 +95,3 @@
         <p class="text-neutral-400 text-center col-span-full">No hay exhibiciones registradas.</p>
     @endforelse
 </div>
-=======
-<div>
-    
-</div>
-
