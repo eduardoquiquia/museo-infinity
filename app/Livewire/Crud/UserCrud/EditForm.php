@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Crud\UserCrud;
 
+use App\Models\ActividadReciente;
 use App\Models\User;
 use Livewire\Component;
 
@@ -45,6 +46,14 @@ class EditForm extends Component
             'email' => $this->email,
             'role' => $this->role,
             'estado' => $this->estado,
+        ]);
+
+        // Registrar actividad reciente
+        ActividadReciente::create([
+            'tipo' => 'actualizacion',
+            'descripcion' => "El usuario {$usuario->name} fue actualizado.",
+            'entidad_type' => User::class,
+            'entidad_id' => $usuario->id,
         ]);
 
         // Cerrar modal

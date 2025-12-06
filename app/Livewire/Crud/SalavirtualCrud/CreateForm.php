@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Crud\SalavirtualCrud;
 
+use App\Models\ActividadReciente;
 use App\Models\SalaVirtual;
 use Livewire\Component;
 
@@ -43,7 +44,7 @@ class CreateForm extends Component
         $this->highlights = $highlightsArray;
         $this->validate();
 
-        SalaVirtual::create([
+        $sala = SalaVirtual::create([
             'titulo' => $this->titulo,
             'subtitulo' => $this->subtitulo,
             'categoria' => $this->categoria,
@@ -54,6 +55,14 @@ class CreateForm extends Component
             'descripcion' => $this->descripcion,
             'highlights' => json_encode($highlightsArray),
             'estado' => $this->estado,
+        ]);
+
+        // Registrar actividad reciente
+        ActividadReciente::create([
+            'tipo' => 'creacion',
+            'descripcion' => "La sala {$sala->titulo} fue creada.",
+            'entidad_type' => SalaVirtual::class,
+            'entidad_id' => $sala->id,
         ]);
 
         $this->reset(['titulo', 'subtitulo', 'categoria', 'nivel_experiencia', 'salas_incluidas', 'imagen_principal', 'imagen_360', 'descripcion', 'highlights']);

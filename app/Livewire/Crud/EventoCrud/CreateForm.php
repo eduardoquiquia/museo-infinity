@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Crud\EventoCrud;
 
+use App\Models\ActividadReciente;
 use App\Models\Evento;
 use Livewire\Component;
 
@@ -40,7 +41,7 @@ class CreateForm extends Component
     {
         $this->validate();
 
-        Evento::create([
+        $evento = Evento::create([
             'nombre' => $this->nombre,
             'descripcion' => $this->descripcion,
             'fecha' => $this->fecha,
@@ -51,6 +52,14 @@ class CreateForm extends Component
             'capacidad' => $this->capacidad,
             'imagen_principal' => $this->imagen_principal,
             'estado' => $this->estado,
+        ]);
+
+        // Registrar actividad reciente
+        ActividadReciente::create([
+            'tipo' => 'creacion',
+            'descripcion' => "El evento{$evento->nombre} fue creado.",
+            'entidad_type' => Evento::class,
+            'entidad_id' => $evento->id,
         ]);
 
         $this->reset(['nombre','descripcion','fecha','hora','ubicacion', 'categoria', 'precio', 'capacidad', 'imagen_principal']);

@@ -11,7 +11,6 @@ return new class extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('reserva_id')->constrained('reservas')->onDelete('cascade');
-            $table->dateTime('fecha_hora')->index();
             $table->decimal('total', 10, 2);
 
             $table->index(['reserva_id', 'fecha_hora']);

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Crud\ExhibicionCrud;
 
+use App\Models\ActividadReciente;
 use App\Models\Exhibicion;
 use Livewire\Component;
 
@@ -65,6 +66,14 @@ class EditForm extends Component
             'descripcion_detallada' => $this->descripcion_detallada,
             'destacada' => $this->destacada,
             'estado' => $this->estado
+        ]);
+
+        // Registrar actividad reciente
+        ActividadReciente::create([
+            'tipo' => 'actualizacion',
+            'descripcion' => "La exhibicion {$exhibicion->titulo} fue actualizada.",
+            'entidad_type' => Exhibicion::class,
+            'entidad_id' => $exhibicion->id,
         ]);
 
         // Cerrar modal

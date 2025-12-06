@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Componentes\PagoComponent;
 
+use App\Models\ActividadReciente;
 use Livewire\Component;
 use Illuminate\Support\Facades\Http;
 use App\Models\Pago;
@@ -71,6 +72,24 @@ class PagoModal extends Component
             ]);
 
             $this->origen->pago()->save($pago);
+
+            // Si es un pedido, actualizar la reserva asociada
+            if ($this->origen instanceof \App\Models\Pedido) {
+                $reserva = $this->origen->reserva; // relación pedido -> reserva
+                $reserva->estado = 'confirmada';
+                $reserva->save();
+            } else {
+                // Para entradas u otros modelos
+                $this->origen->estado = 'confirmada';
+                $this->origen->save();
+            }
+
+            ActividadReciente::create([
+                'tipo'          => 'pago',
+                'descripcion'   => "Pago aprobado para {$this->detalle}",
+                'entidad_type'  => get_class($this->origen),
+                'entidad_id'    => $this->origen->id,
+            ]);
 
             if ($this->origen instanceof Evento) {
                 $this->origen->capacidad -= 1;

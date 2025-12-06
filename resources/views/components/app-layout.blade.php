@@ -30,6 +30,10 @@
 
     {{-- MODALES DE PAGO --}}
     @livewire('componentes.pago-component.pago-modal')
+    @livewire('componentes.pago-component.alerta-modal')
+
+    {{-- MODALES DE RESERVA --}}
+    @livewire('componentes.restaurante-component.reservar-form')
 
     {{-- FOOTER --}}
     @livewire('componentes.layout-component.footer')

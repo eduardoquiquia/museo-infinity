@@ -6,6 +6,7 @@ use App\Http\Controllers\Web\ExhibicionController;
 use App\Http\Controllers\Web\SalaVirtualController;
 use App\Http\Controllers\Web\EventoController;
 use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\PedidoController;
 use App\Http\Controllers\Web\PerfilController;
 use App\Http\Controllers\Web\RestauranteController;
 use Illuminate\Support\Facades\Route;

@@ -12,7 +12,6 @@ class Pedido extends Model
     /** @var list<string> */
     protected $fillable = [
         'reserva_id',
-        'fecha_hora',
         'total'
     ];
 
@@ -21,7 +20,6 @@ class Pedido extends Model
     {
         return [
             'reserva_id' => 'integer',
-            'fecha_hora' => 'datetime',
             'total' => 'decimal:2'
         ];
     }

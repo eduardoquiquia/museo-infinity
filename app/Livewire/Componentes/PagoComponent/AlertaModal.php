@@ -13,7 +13,8 @@ class AlertaModal extends Component
 
     protected $listeners = [
         'pagoExitoso' => 'mostrarExito',
-        'pagoRechazado' => 'mostrarError'
+        'pagoRechazado' => 'mostrarError',
+        'reservaExitosa' => 'mostrarReservaExito',
     ];
 
     public function mostrarExito($mensaje = 'Pago realizado con éxito', $detalle = null)
@@ -27,6 +28,14 @@ class AlertaModal extends Component
     public function mostrarError($mensaje = 'Error al procesar el pago', $detalle = null)
     {
         $this->tipo = 'error';
+        $this->mensaje = $mensaje;
+        $this->detalle = $detalle;
+        $this->mostrar = true;
+    }
+
+    public function mostrarReservaExito($mensaje = 'Reserva realizada con éxito', $detalle = null)
+    {
+        $this->tipo = 'success';
         $this->mensaje = $mensaje;
         $this->detalle = $detalle;
         $this->mostrar = true;
