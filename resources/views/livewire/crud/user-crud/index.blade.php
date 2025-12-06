@@ -2,7 +2,7 @@
     <div class="bg-[#141212] border border-[#2a2626] rounded-lg overflow-hidden">
 
         {{-- Encabezados --}}
-        <div class="grid grid-cols-6 px-6 py-3 text-sm font-semibold text-gray-300 border-b border-[#2a2626]">
+        <div class="grid grid-cols-[200px_250px_120px_150px_120px_1fr] px-6 py-3 text-sm font-semibold text-gray-300 border-b border-[#2a2626]">
             <div>Nombre</div>
             <div>Email</div>
             <div>Rol</div>
@@ -13,7 +13,7 @@
 
         {{-- Filas --}}
         @forelse($usuarios as $user)
-            <div class="grid grid-cols-6 px-6 py-4 text-gray-300 border-b border-[#2a2626] items-center">
+            <div class="grid grid-cols-[200px_250px_120px_150px_120px_1fr] px-6 py-4 text-gray-300 border-b border-[#2a2626] items-center">
 
                 {{-- Nombre --}}
                 <div class="flex items-center gap-2">
