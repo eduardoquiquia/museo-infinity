@@ -25,11 +25,13 @@
                 ambiente único
             </p>
 
-            <div class="flex justify-center gap-4">
-                <button class="bg-[#c9a961] font-serif hover:bg-yellow-500 text-black font-medium px-6 py-3 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
-                    Reservar Mesa
-                </button>
-            </div>
+            <button
+                x-data
+                @click="$dispatch('abrir-modal-reserva')"
+                class="bg-[#c9a961] font-serif hover:bg-[#c3a961]/90 text-black font-medium px-6 py-3 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+            >
+                Reservar Mesa
+            </button>
         </div>
     </section>
 

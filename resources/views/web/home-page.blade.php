@@ -175,15 +175,13 @@
                 Una experiencia culinaria excepcional que fusiona historia y sabor en un ambiente único.
             </p>
 
-            <div class="flex justify-center gap-4">
+            <a href="{{ route('restaurante') }}">
                 <button 
-                    @guest onclick="openAuthModal()" @endguest
-                    @auth onclick="abrirModalReservaMesa()" @endauth
                     class="bg-[#c9a961] font-serif hover:bg-[#c3a961]/90 text-black font-medium px-6 py-3 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
                 >
                     Reservar Mesa
                 </button>
-            </div>
+            </a>
         </div>
     </section>
 </x-app-layout>

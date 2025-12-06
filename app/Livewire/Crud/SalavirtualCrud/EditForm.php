@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Crud\SalavirtualCrud;
 
+use App\Models\ActividadReciente;
 use App\Models\SalaVirtual;
 use Livewire\Component;
 
@@ -64,6 +65,14 @@ class EditForm extends Component
             'descripcion' => $this->descripcion,
             'highlights' => json_decode($this->highlights, true),
             'estado' => $this->estado,
+        ]);
+
+        // Registrar actividad reciente
+        ActividadReciente::create([
+            'tipo' => 'actualizacion',
+            'descripcion' => "La sala {$sala->titulo} fue actualizada.",
+            'entidad_type' => SalaVirtual::class,
+            'entidad_id' => $sala->id,
         ]);
 
         $this->open = false;

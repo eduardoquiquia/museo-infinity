@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Crud\PlatoCrud;
 
+use App\Models\ActividadReciente;
 use App\Models\Plato;
 use Livewire\Component;
 
@@ -51,6 +52,14 @@ class EditForm extends Component
             'precio' => $this->precio,
             'imagen_principal' => $this->imagen_principal,
             'estado' => $this->estado,
+        ]);
+
+        // Registrar actividad reciente
+        ActividadReciente::create([
+            'tipo' => 'actualizacion',
+            'descripcion' => "El plato{$plato->nombre} fue actualizado.",
+            'entidad_type' => Plato::class,
+            'entidad_id' => $plato->id,
         ]);
 
         $this->open = false;

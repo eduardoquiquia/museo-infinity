@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Crud\UserCrud;
 
+use App\Models\ActividadReciente;
 use App\Models\User;
 use Livewire\Component;
 
@@ -39,12 +40,20 @@ class CreateForm extends Component
     {
         $this->validate();
 
-        User::create([
+        $usuario = User::create([
             'name' => $this->name,
             'email' => $this->email,
-            'password' => $this->password,
+            'password' => bcrypt($this->password),
             'role' => $this->role,
             'estado' => $this->estado,
+        ]);
+
+        // Registrar actividad reciente
+        ActividadReciente::create([
+            'tipo' => 'creacion',
+            'descripcion' => "El usuario {$usuario->name} fue creado.",
+            'entidad_type' => User::class,
+            'entidad_id' => $usuario->id,
         ]);
 
         $this->reset(['name','email','password','role']);

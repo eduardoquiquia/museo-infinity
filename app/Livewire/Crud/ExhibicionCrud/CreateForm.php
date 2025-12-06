@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Crud\ExhibicionCrud;
 
+use App\Models\ActividadReciente;
 use App\Models\Exhibicion;
 use Livewire\Component;
 use Illuminate\Support\Str;
@@ -41,7 +42,7 @@ class CreateForm extends Component
     {
         $this->validate();
 
-        Exhibicion::create([
+        $exhibicion = Exhibicion::create([
             'titulo' => $this->titulo,
             'slug' => Str::slug($this->titulo) . '-' . uniqid(),
             'descripcion' => $this->descripcion,
@@ -54,6 +55,14 @@ class CreateForm extends Component
             'descripcion_detallada' => $this->descripcion_detallada,
             'destacada' => $this->destacada,
             'estado' => $this->estado
+        ]);
+
+        // Registrar actividad reciente
+        ActividadReciente::create([
+            'tipo' => 'creacion',
+            'descripcion' => "La exhibicion{$exhibicion->titulo} fue creada.",
+            'entidad_type' => Exhibicion::class,
+            'entidad_id' => $exhibicion->id,
         ]);
 
         $this->reset(['titulo','descripcion','categoria','imagen_principal','imagen_360', 'periodo', 'fecha_descubrimiento', 'lugar_hallazgo', 'descripcion_detallada', 'destacada']);

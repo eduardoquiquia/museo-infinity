@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Crud\EventoCrud;
 
+use App\Models\ActividadReciente;
 use App\Models\Evento;
 use Livewire\Component;
 
@@ -62,6 +63,14 @@ class EditForm extends Component
             'capacidad' => $this->capacidad,
             'imagen_principal' => $this->imagen_principal,
             'estado' => $this->estado
+        ]);
+
+        // Registrar actividad reciente
+        ActividadReciente::create([
+            'tipo' => 'actualizacion',
+            'descripcion' => "El evento{$evento->nombre} fue actualizado.",
+            'entidad_type' => Evento::class,
+            'entidad_id' => $evento->id,
         ]);
 
         // Cerrar modal
