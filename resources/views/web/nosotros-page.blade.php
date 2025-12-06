@@ -2,7 +2,8 @@
     <div class="min-h-screen bg-[#0a0908]">
 
     {{-- HERO --}}
-    <section class="relative py-24 px-4 border-b border-[#c9a961]/10 overflow-hidden">
+   <section class="relative pt-36 pb-24 px-4 border-b border-[#c9a961]/10 overflow-hidden">
+
         <div class="absolute inset-0 z-0">
             <img
                 src="https://images.unsplash.com/photo-1670915564082-9258f2c326c4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
@@ -124,19 +125,12 @@
         </div>
     </section>
 
-
-
 {{-- TIMELINE --}}
-<section class="py-20 px-4 bg-[#0a0908] border-t border-[#c9a961]/10">
-    <div class="max-w-5xl mx-auto" x-data="{i:0}">
+<section class="py-24 px-4 bg-[#0a0908] border-t border-[#c9a961]/10">
+    <div class="max-w-5xl mx-auto">
 
         {{-- HEADER --}}
-        <div
-            x-data="{show:false}"
-            x-intersect.once="setTimeout(() => show=true, 200)"
-            :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
-            class="text-center mb-16 transition duration-700"
-        >
+        <div class="text-center mb-20">
             <span class="inline-block px-4 py-1 border border-[#c9a961]/30 text-[#c9a961] text-xs tracking-[0.3em] uppercase mb-6">
                 Historia
             </span>
@@ -146,167 +140,123 @@
 
         <div class="relative">
 
-            <div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-[#c9a961]/20 -translate-x-1/2 hidden md:block"></div>
+            {{-- LÍNEA CENTRAL --}}
+            <div class="absolute left-1/2 top-0 bottom-0 w-[2px] bg-[#c9a961]/30 -translate-x-1/2 hidden md:block"></div>
 
-            <div class="space-y-16">
+            <div class="space-y-24">
 
-
-
-                {{--  1 --}}
-                <div
-                    x-data="{show:false}"
-                    x-intersect.once="i++; setTimeout(() => show=true, i*250)"
-                    :class="show ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'"
-                    class="flex flex-col md:flex-row gap-8 items-center md:text-right transition duration-700"
-                >
-                    <div class="flex-1">
+                {{-- ITEM 1 --}}
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="flex-1 text-right md:pr-12">
                         <div class="border border-[#c9a961]/20 bg-[#1a1614] p-6">
-                            <h3 class="text-2xl text-[#f2f0ed] mb-2">Fundación del Museo Infinito</h3>
+                            <h3 class="text-2xl text-[#f2f0ed] mb-2">Fundación del Museo</h3>
                             <p class="text-[#a39d96]">Apertura oficial con 50 piezas prehistóricas</p>
                         </div>
                     </div>
 
-                    <div class="flex-shrink-0 z-10">
-                        <div class="w-20 h-20 bg-[#c9a961] rounded-full flex items-center justify-center border-4 border-[#0a0908]">
-                            <span class="text-[#0a0908] font-semibold">2008</span>
+                    <div class="z-10">
+                        <div class="w-20 h-20 bg-[#c9a961] flex items-center justify-center border-4 border-[#0a0908]">
+                            <span class="text-black font-semibold">2008</span>
                         </div>
                     </div>
 
                     <div class="flex-1 hidden md:block"></div>
                 </div>
 
-
-
-                {{-- 2 --}}
-                <div
-                    x-data="{show:false}"
-                    x-intersect.once="i++; setTimeout(() => show=true, i*250)"
-                    :class="show ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'"
-                    class="flex flex-col md:flex-row-reverse gap-8 items-center md:text-left transition duration-700"
-                >
-                    <div class="flex-1">
+                {{-- ITEM 2 --}}
+                <div class="flex flex-col md:flex-row-reverse items-center gap-12">
+                    <div class="flex-1 text-left md:pl-12">
                         <div class="border border-[#c9a961]/20 bg-[#1a1614] p-6">
-                            <h3 class="text-2xl text-[#f2f0ed] mb-2">Adquisición del Triceratops</h3>
-                            <p class="text-[#a39d96]">Incorporación del fósil más emblemático del museo</p>
+                            <h3 class="text-2xl text-[#f2f0ed] mb-2">Triceratops al Museo</h3>
+                            <p class="text-[#a39d96]">Se integra el fósil más emblemático</p>
                         </div>
                     </div>
 
-                    <div class="flex-shrink-0 z-10">
-                        <div class="w-20 h-20 bg-[#c9a961] rounded-full flex items-center justify-center border-4 border-[#0a0908]">
-                            <span class="text-[#0a0908] font-semibold">2019</span>
+                    <div class="z-10">
+                        <div class="w-20 h-20 bg-[#c9a961] flex items-center justify-center border-4 border-[#0a0908]">
+                            <span class="text-black font-semibold">2019</span>
                         </div>
                     </div>
 
                     <div class="flex-1 hidden md:block"></div>
                 </div>
 
-
-
-                {{-- 3 --}}
-                <div
-                    x-data="{show:false}"
-                    x-intersect.once="i++; setTimeout(() => show=true, i*250)"
-                    :class="show ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'"
-                    class="flex flex-col md:flex-row gap-8 items-center md:text-right transition duration-700"
-                >
-                    <div class="flex-1">
+                {{-- ITEM 3 --}}
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="flex-1 text-right md:pr-12">
                         <div class="border border-[#c9a961]/20 bg-[#1a1614] p-6">
-                            <h3 class="text-2xl text-[#f2f0ed] mb-2">Inauguración del restaurante</h3>
-                            <p class="text-[#a39d96]">Chef María Sánchez crea la propuesta gastronómica</p>
+                            <h3 class="text-2xl text-[#f2f0ed] mb-2">Restaurante Inaugurado</h3>
+                            <p class="text-[#a39d96]">Chef María Sánchez lidera la cocina</p>
                         </div>
                     </div>
 
-                    <div class="flex-shrink-0 z-10">
-                        <div class="w-20 h-20 bg-[#c9a961] rounded-full flex items-center justify-center border-4 border-[#0a0908]">
-                            <span class="text-[#0a0908] font-semibold">2020</span>
+                    <div class="z-10">
+                        <div class="w-20 h-20 bg-[#c9a961] flex items-center justify-center border-4 border-[#0a0908]">
+                            <span class="text-black font-semibold">2020</span>
                         </div>
                     </div>
 
                     <div class="flex-1 hidden md:block"></div>
                 </div>
 
-
-
-                {{-- 4 --}}
-                <div
-                    x-data="{show:false}"
-                    x-intersect.once="i++; setTimeout(() => show=true, i*250)"
-                    :class="show ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'"
-                    class="flex flex-col md:flex-row-reverse gap-8 items-center md:text-left transition duration-700"
-                >
-                    <div class="flex-1">
+                {{-- ITEM 4 --}}
+                <div class="flex flex-col md:flex-row-reverse items-center gap-12">
+                    <div class="flex-1 text-left md:pl-12">
                         <div class="border border-[#c9a961]/20 bg-[#1a1614] p-6">
-                            <h3 class="text-2xl text-[#f2f0ed] mb-2">Expansión digital</h3>
-                            <p class="text-[#a39d96]">Lanzamiento de tours virtuales y experiencias 360°</p>
+                            <h3 class="text-2xl text-[#f2f0ed] mb-2">Expansión Digital</h3>
+                            <p class="text-[#a39d96]">Tours virtuales y experiencias 360°</p>
                         </div>
                     </div>
 
-                    <div class="flex-shrink-0 z-10">
-                        <div class="w-20 h-20 bg-[#c9a961] rounded-full flex items-center justify-center border-4 border-[#0a0908]">
-                            <span class="text-[#0a0908] font-semibold">2022</span>
+                    <div class="z-10">
+                        <div class="w-20 h-20 bg-[#c9a961] flex items-center justify-center border-4 border-[#0a0908]">
+                            <span class="text-black font-semibold">2022</span>
                         </div>
                     </div>
 
                     <div class="flex-1 hidden md:block"></div>
                 </div>
 
-
-
-                {{--  5 --}}
-                <div
-                    x-data="{show:false}"
-                    x-intersect.once="i++; setTimeout(() => show=true, i*250)"
-                    :class="show ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'"
-                    class="flex flex-col md:flex-row gap-8 items-center md:text-right transition duration-700"
-                >
-                    <div class="flex-1">
+                {{-- ITEM 5 --}}
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="flex-1 text-right md:pr-12">
                         <div class="border border-[#c9a961]/20 bg-[#1a1614] p-6">
-                            <h3 class="text-2xl text-[#f2f0ed] mb-2">Reconocimiento internacional</h3>
-                            <p class="text-[#a39d96]">Premio al Mejor Museo Virtual de Europa</p>
+                            <h3 class="text-2xl text-[#f2f0ed] mb-2">Premio Internacional</h3>
+                            <p class="text-[#a39d96]">Mejor Museo Virtual de Europa</p>
                         </div>
                     </div>
 
-                    <div class="flex-shrink-0 z-10">
-                        <div class="w-20 h-20 bg-[#c9a961] rounded-full flex items-center justify-center border-4 border-[#0a0908]">
-                            <span class="text-[#0a0908] font-semibold">2024</span>
+                    <div class="z-10">
+                        <div class="w-20 h-20 bg-[#c9a961] flex items-center justify-center border-4 border-[#0a0908]">
+                            <span class="text-black font-semibold">2024</span>
                         </div>
                     </div>
 
                     <div class="flex-1 hidden md:block"></div>
                 </div>
 
-
-
-                {{-- 6 --}}
-                <div
-                    x-data="{show:false}"
-                    x-intersect.once="i++; setTimeout(() => show=true, i*250)"
-                    :class="show ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'"
-                    class="flex flex-col md:flex-row-reverse gap-8 items-center md:text-left transition duration-700"
-                >
-                    <div class="flex-1">
+                {{-- ITEM 6 --}}
+                <div class="flex flex-col md:flex-row-reverse items-center gap-12">
+                    <div class="flex-1 text-left md:pl-12">
                         <div class="border border-[#c9a961]/20 bg-[#1a1614] p-6">
-                            <h3 class="text-2xl text-[#f2f0ed] mb-2">Nueva sala interactiva</h3>
+                            <h3 class="text-2xl text-[#f2f0ed] mb-2">Sala Interactiva</h3>
                             <p class="text-[#a39d96]">Realidad aumentada y talleres educativos</p>
                         </div>
                     </div>
 
-                    <div class="flex-shrink-0 z-10">
-                        <div class="w-20 h-20 bg-[#c9a961] rounded-full flex items-center justify-center border-4 border-[#0a0908]">
-                            <span class="text-[#0a0908] font-semibold">2025</span>
+                    <div class="z-10">
+                        <div class="w-20 h-20 bg-[#c9a961] flex items-center justify-center border-4 border-[#0a0908]">
+                            <span class="text-black font-semibold">2025</span>
                         </div>
                     </div>
 
                     <div class="flex-1 hidden md:block"></div>
                 </div>
-
 
             </div>
         </div>
     </div>
 </section>
-
-
 
 
 
@@ -340,5 +290,6 @@
     </section>
 
 </div>
-    
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
 </x-app-layout>
