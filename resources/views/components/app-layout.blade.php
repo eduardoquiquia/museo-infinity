@@ -24,13 +24,15 @@
 
         {{ $slot }}
     </main>
-
-    {{-- FOOTER --}}
-    @livewire('componentes.layout-component.footer')
-    
     {{-- MODALES EN NAVBAR --}}
     @livewire('componentes.entrada-component.entrada-modal')
     @livewire('componentes.auth-component.auth-modal')
+
+    {{-- MODALES DE PAGO --}}
+    @livewire('componentes.pago-component.pago-modal')
+
+    {{-- FOOTER --}}
+    @livewire('componentes.layout-component.footer')
 
     {{-- MODAL CREATE --}}
     @livewire('crud.user-crud.create-form')

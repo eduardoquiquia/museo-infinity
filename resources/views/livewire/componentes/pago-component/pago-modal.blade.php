@@ -29,7 +29,7 @@
                         maxlength="5"
                         wire:model="fecha_vencimiento"
                         class="w-full bg-[#1a1a1a] text-white px-4 py-3 rounded mb-4"
-                        placeholder="MM/AA">
+                        placeholder="MM/YY">
                 </div>
 
                 <!-- CVV -->
@@ -44,10 +44,17 @@
                 </div>
             </div>
 
+            {{-- ⚠️ Mensaje de error dentro del modal --}}
+            @if ($errorModal)
+                <p class="text-red-500 text-sm mb-3 -mt-2">
+                    {{ $errorModal }}
+                </p>
+            @endif
+
             <!-- Resumen -->
             <div class="border border-gray-700 rounded p-4 mb-4 mt-2 text-sm">
                 <div class="flex justify-between mb-1">
-                    <span>Evento / Detalle:</span>
+                    <span>Detalle:</span>
                     <span class="font-semibold">{{ $detalle }}</span>
                 </div>
 

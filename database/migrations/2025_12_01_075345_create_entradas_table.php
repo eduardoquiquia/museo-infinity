@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('entradas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->enum('tipo', ['General', 'Adulto mayor', 'Estudiante', 'Niño'])->index();
+            $table->enum('tipo', ['General', 'Adulto mayor', 'Estudiante', 'Niño'])->index()->nullable();
             $table->date('fecha_compra');
             $table->date('fecha_visita')->nullable()->index();
             $table->integer('cantidad');

@@ -13,6 +13,11 @@ return new class extends Migration
             $table->decimal('monto', 10, 2);
             $table->enum('estado', ['pendiente', 'aprobado', 'rechazado'])->default('pendiente');
             $table->string('transaccion_id')->nullable();
+
+            // Polimórfico
+            $table->unsignedBigInteger('origen_id')->nullable();
+            $table->string('origen_type')->nullable();
+            
             $table->text('detalle')->nullable(); 
             $table->timestamps();
         });

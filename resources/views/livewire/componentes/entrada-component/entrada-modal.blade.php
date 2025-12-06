@@ -34,50 +34,29 @@
                 <input type="date" wire:model="fecha_visita"
                     class="w-full mb-4 px-3 py-2 rounded bg-[#141212] text-gray-300" required>
 
-                {{-- TIPO --}}
-                <label class="block mb-1 text-sm font-medium">Tipo de Entrada</label>
+                {{-- TIPO (solo mostrar si NO es evento) --}}
+                @if($modo !== 'evento')
+                    <label class="block mb-1 text-sm font-medium">Tipo de Entrada</label>
 
-                <select wire:model="tipo"
-                    @disabled($modo === 'evento')
-                    class="w-full px-3 py-2 rounded bg-[#141212] text-gray-300 mb-4">
+                    <select wire:model="tipo"
+                        class="w-full px-3 py-2 rounded bg-[#141212] text-gray-300 mb-4">
 
-                    @if($modo === 'evento' && $evento)
-                        <option value="General">
-                            General - S/{{ number_format($evento->precio, 2) }}
-                        </option>
-                    @else
                         <option value="General">General - S/ 15.00</option>
                         <option value="Adulto mayor">Adulto mayor - S/ 10.00</option>
                         <option value="Estudiante">Estudiante - S/ 8.00</option>
                         <option value="Niño">Niño - S/ 5.00</option>
-                    @endif
-
-                </select>
+                    </select>
+                @endif
 
                 {{-- CANTIDAD --}}
                 <label class="block mb-1 text-sm font-medium">Cantidad</label>
-                <input type="number" wire:model="cantidad" min="1"
+                <input type="number" wire:model.live="cantidad" min="1"
                     class="w-full mb-4 px-3 py-2 rounded bg-[#141212] text-gray-300">
 
                 {{-- TOTAL --}}
                 <div class="bg-[#fff9e6] text-black px-4 py-4 rounded flex justify-between text-lg font-semibold mb-5">
                     <span>Total a pagar:</span>
-                    <span>
-                        @php
-                            if ($modo === 'evento' && $evento) {
-                                $precio = $evento->precio;
-                            } else {
-                                $tipos = [
-                                    'General'       => 15,
-                                    'Adulto mayor'  => 10,
-                                    'Estudiante'    => 8,
-                                    'Niño'          => 5,
-                                ];
-                                $precio = $tipos[$tipo] ?? 0;
-                            }
-                        @endphp
-                        S/{{ number_format($precio * $cantidad, 2) }}
-                    </span>
+                    <span>S/{{ number_format($this->precioTotal, 2) }}</span>
                 </div>
 
                 <button 

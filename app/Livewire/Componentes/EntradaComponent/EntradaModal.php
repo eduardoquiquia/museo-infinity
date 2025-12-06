@@ -42,6 +42,10 @@ class EntradaModal extends Component
         $this->resetForm();
         $this->modo = 'presencial';
         $this->evento = null;
+
+        // precio base por defecto
+        $this->tipo = 'General';
+
         $this->open = true;
     }
 
@@ -55,33 +59,53 @@ class EntradaModal extends Component
         $this->resetForm();
         $this->modo = 'evento';
         $this->evento = Evento::findOrFail($id);
+
+        // precio del evento (fijo)
+        $this->evento->precio;
+
         $this->open = true;
     }
 
     private function resetForm()
     {
         $this->fecha_visita = null;
-        $this->tipo = null;
         $this->cantidad = 1;
     }
 
-    public function guardar()
+    public function getPrecioTotalProperty()
     {
-        // Determinar precio base según modo
         if ($this->modo === 'evento') {
-            // EVENTO → precio fijo del modelo Evento
-            $precioBase = $this->evento->precio;
-
+            $precioBase = $this->evento->precio ?? 0;
         } else {
-            // PRESENCIAL → precio según tipo
-            $preciosPresenciales = [
+            $precios = [
                 'General'       => 15,
                 'Adulto mayor'  => 10,
                 'Estudiante'    => 8,
                 'Niño'          => 5,
             ];
 
-            $precioBase = $preciosPresenciales[$this->tipo] ?? 15;
+            $precioBase = $precios[$this->tipo] ?? 15;
+        }
+
+        return $precioBase * $this->cantidad;
+    }
+
+
+    public function guardar()
+    {
+        // Determinar precio base según modo
+        if ($this->modo === 'evento') {
+            $precioBase = $this->evento->precio;
+
+        } else {
+            $precios = [
+                'General'       => 15,
+                'Adulto mayor'  => 10,
+                'Estudiante'    => 8,
+                'Niño'          => 5,
+            ];
+
+            $precioBase = $precios[$this->tipo] ?? 15;
         }
 
         $total = $precioBase * $this->cantidad;
@@ -98,7 +122,6 @@ class EntradaModal extends Component
             'estado'          => 'pendiente',
         ]);
 
-        // Relación morph
         if ($this->modo === 'evento') {
             $entrada->origen()->associate($this->evento);
             $entrada->save();
@@ -106,14 +129,15 @@ class EntradaModal extends Component
 
         $this->open = false;
 
-        // ABRIR modal de pago con info dynamic
         $this->dispatch('abrir-modal-pago', [
-            'origen_tipo' => 'entrada',
+            'origen_tipo' => \App\Models\Entrada::class,
             'origen_id'   => $entrada->id,
             'monto'       => $total,
             'descripcion' => $this->modo === 'evento'
                 ? "Entrada para evento: {$this->evento->nombre}"
                 : "Entrada presencial - {$this->tipo}",
+            'fecha'       => $this->fecha ?? now()->toDateString(),
+            'cantidad'    => $this->cantidad ?? 1,
         ]);
     }
 

@@ -50,7 +50,7 @@
 
             @auth
                 <button 
-                    wire:click="$dispatch('abrir-modal-entrada', { id: {{ $evento->id }} })"
+                    wire:click="$dispatch('abrir-entrada-evento', { id: {{ $evento->id }} })"
                     class="bg-yellow-600 hover:bg-yellow-500 text-black font-semibold px-6 py-2 rounded-lg transition"
                 >
                     Comprar Entrada

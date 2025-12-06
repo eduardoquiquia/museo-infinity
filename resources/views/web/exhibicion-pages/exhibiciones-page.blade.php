@@ -61,7 +61,7 @@
                 </select>
 
                 @if($categoria || $search)
-                    <a href="{{ route('web.exhibiciones') }}"
+                    <a href="{{ route('exhibiciones') }}"
                         class="text-[#c9a961] underline px-2 py-2">
                         Limpiar
                     </a>

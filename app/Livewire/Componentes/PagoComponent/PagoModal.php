@@ -6,7 +6,6 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Http;
 use App\Models\Pago;
 use App\Models\Evento;
-use App\Models\Pedido;
 
 class PagoModal extends Component
 {
@@ -18,72 +17,61 @@ class PagoModal extends Component
 
     public $mostrar = false;
 
+    public $errorModal = null; // mensajes dentro del modal
+
     // Datos de tarjeta
     public $numero_tarjeta;
     public $fecha_vencimiento;
     public $cvv;
 
-    protected $listeners = ['abrirPagoModal' => 'cargarDatos'];
+    protected $listeners = ['abrir-modal-pago' => 'cargarDatos'];
 
-    public function cargarDatos($origenType, $origenId)
+    public function cargarDatos($data)
     {
         $this->reset(['numero_tarjeta', 'fecha_vencimiento', 'cvv']);
 
+        // Cargar datos directos
+        $origenType = $data['origen_tipo'];
+        $origenId   = $data['origen_id'];
+        $this->monto = $data['monto'];
+        $this->detalle = $data['descripcion'];
+        $this->fecha     = $data['fecha'] ?? null;
+        $this->cantidad  = $data['cantidad'] ?? 1;
+
+        // Buscar origen (Entrada, Evento, Pedido, etc.)
         $this->origen = $origenType::find($origenId);
-
         if (!$this->origen) return;
-
-        // EVENTO
-        if ($this->origen instanceof Evento) {
-            $this->monto = $this->origen->precio;
-            $this->detalle = $this->origen->nombre;
-            $this->fecha = $this->origen->fecha->format('d/m/Y');
-            $this->cantidad = 1;
-        }
-
-        // PEDIDO DE RESERVA
-        if ($this->origen instanceof Pedido) {
-            $this->monto = $this->origen->total;
-            $this->detalle = "Pedido de Reserva #" . $this->origen->id;
-            $this->fecha = $this->origen->fecha_hora->format('d/m/Y H:i');
-            $this->cantidad = $this->origen->detalles()->count();
-        }
 
         $this->mostrar = true;
     }
 
     public function procesarPago()
     {
-        // Llamada a la API
-        $response = Http::post("http://localhost:8001/api/pagos/validar", [
-            'numero_tarjeta'     => $this->numero_tarjeta,
-            'fecha_vencimiento'  => $this->fecha_vencimiento,
-            'cvv'                => $this->cvv,
-            'monto'              => $this->monto
-        ]);
+        try {
+            $response = Http::post("http://localhost:8001/api/pagos/validar", [
+                'numero_tarjeta'     => $this->numero_tarjeta,
+                'fecha_vencimiento'  => $this->fecha_vencimiento,
+                'cvv'                => $this->cvv,
+                'monto'              => $this->monto
+            ]);
 
-        if (!$response->ok()) {
-            $this->dispatch('error', message: 'Error al conectar con la API.');
-            return;
-        }
+            $data = $response->json();
 
-        $data = $response->json();
+            if (!($response->ok() && $data['success'] ?? false)) {
+                $this->errorModal = $data['message'] ?? 'Datos incorrectos';
+                return;
+            }
 
-        // Crear Registro Pago
-        $pago = Pago::create([
-            'monto'          => $this->monto,
-            'estado'         => $data['status'],
-            'transaccion_id' => $data['transaccion_id'] ?? null,
-            'detalle'        => $this->detalle
-        ]);
+            // Pago aprobado
+            $pago = Pago::create([
+                'monto'          => $this->monto,
+                'estado'         => 'aprobado',
+                'transaccion_id' => $data['data']['transaccion_id'] ?? null,
+                'detalle'        => $this->detalle
+            ]);
 
-        // Asociar con origen
-        $this->origen->pago()->save($pago);
+            $this->origen->pago()->save($pago);
 
-        // Si se aprobó, aplicar acciones
-        if ($data['status'] === 'aprobado') {
-
-            // Si es evento → reducir capacidad
             if ($this->origen instanceof Evento) {
                 $this->origen->capacidad -= 1;
                 $this->origen->save();
@@ -91,11 +79,10 @@ class PagoModal extends Component
 
             $this->dispatch('pagoExitoso');
             $this->mostrar = false;
-            return;
-        }
 
-        // RECHAZADO
-        $this->dispatch('pagoRechazado', message: $data['mensaje'] ?? 'Pago rechazado.');
+        } catch (\Exception $e) {
+            $this->errorModal = 'Error al conectar con la API: '.$e->getMessage();
+        }
     }
 
     public function render()
